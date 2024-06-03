@@ -2,7 +2,7 @@
 let slider = document.querySelector(".slider");
 let dots = Array.from(document.querySelectorAll(".dot"));
 let slideWidth = document.querySelector(".slide").offsetWidth;
-let totalScrollToCover = slider.scrollWidth - slider.offsetWidth + 1;
+let totalScrollToCover = slider.scrollWidth - slider.offsetWidth + 2;
 let projects = Array.from(document.querySelectorAll(".project"));
 let projectImage = document.querySelector(".project-image");
 let selectedProject = document.querySelector(".project.active");
@@ -24,8 +24,13 @@ function updateDots() {
   let currentPage = Math.floor((3 * slider.scrollLeft) / totalScrollToCover);
   dots.forEach((dot, index) => {
     const dotCircle = dot.querySelector(".circle");
-    dot.classList.toggle("active", index === currentPage);
-    dotCircle.classList.toggle("active", index === currentPage);
+    if (index === currentPage) {
+      dot.classList.add("active");
+      dotCircle.classList.add("active");
+    } else {
+      dot.classList.remove("active");
+      dotCircle.classList.remove("active");
+    }
   });
 }
 
